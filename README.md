@@ -1,6 +1,6 @@
-# EDWIN ABY. — Frames. Feelings. Stories.
+# EDWIN ABY — Frames. Feelings. Stories.
 
-A personal photography and film portfolio with a combined creative and technical profile. Built with Next.js App Router, TypeScript, Tailwind CSS, and Motion for React. No paid services or external APIs are required.
+An original editorial photography and video portfolio built around Edwin’s visual practice and technical background. The identity is **Contact Sheet / Darkroom Red**: warm paper, ink, one safelight red, and a photographic index that connects still image, moving image and personal perspective.
 
 ## Run locally
 
@@ -9,50 +9,41 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Run `npm run build` for a production build and `npm run typecheck` for a TypeScript check.
+Open http://localhost:3000. Use `npm run typecheck` for TypeScript validation and `npm run build` for an optimized production build.
 
-## Project map
+## Site map
 
-```text
-src/
-  app/                 routes, layouts, responsive design system
-  components/          shared navigation, media, gallery and profile UI
-  data/                project, profile and experience content
-public/
-  images/hero/         opening photograph
-  images/profile/      personal portrait
-  images/work/         still project photography
-  films/posters/       film poster frames and thumbnails
-  videos/              optional local video files
-  documents/           approved combined CV PDF
-docs/                  design-system notes
-```
+- `/` — cinematic home and entry points
+- `/work` — photography, reels, short-form video, nature and personal work in one filterable archive
+- `/services` — photography, moving image and editing services
+- `/about` — personal story, creative/technical practice, skills, interests and languages
+- `/experience` — grouped, expandable experience
+- `/cv` — structured résumé, Print / Save as PDF, and an approved-PDF download when available
+- `/contact` — inquiry form that opens a reviewed email draft plus approved contact links
+- `/films` — compatibility redirect to the Moving Image filter in Work
+- `/work/[slug]` — optional project detail, gallery and click-to-play video
 
-## Add a photography or film project
+## Add original photography or video
 
-1. Copy original files you have permission to publish into `public/images/work/`, `public/films/posters/`, or `public/videos/`.
-2. Add one `WorkItem` entry to `src/data/work.ts`. Use a unique URL-safe `slug`, a real title and description, and set `kind` to `Still` or `Motion`.
-3. Set `image` or `poster` to its path from `public` (for example `/images/work/architecture-01.jpg`). Add descriptive `alt` text and gallery entries such as `{ src: "/images/work/architecture-02.jpg", alt: "Sunlight across the concrete facade" }`.
-4. For motion, optionally set `video` to a local MP4 path or `externalUrl` to a film page. Videos are click-to-play and use a poster frame.
-5. Set `featured: true` for a project you want on the home page. All projects are shown on Work; Motion projects also appear on Films.
+1. Add approved local media to `public/images/work/`, `public/films/posters/` or `public/videos/`.
+2. Add a `WorkItem` to `src/data/work.ts` with a unique slug, honest title/description and the detailed category (`Architecture`, `Interiors`, `Hospitality`, `Commercial`, `Reels` or `Videos`). Set `kind` to `Still` or `Motion`.
+3. Optionally add its Work collection (`Nature & Personal Work`), format (`Reel`, `Short-form Video`, `Personal Video`), aspect ratio, gallery images, role, credits and details.
+4. Use `image` for a still cover or `poster` for a video thumbnail. Add a descriptive `alt`. Videos use controls with `preload="none"`; they do not autoplay.
+5. Set `featured: true` only for work Edwin approves for Home. Work shows nine items at a time and adds more on request.
 
-The category filters on Work are interactive and animate between Still and Motion collections. Project galleries open in an accessible full-screen viewer; use the on-screen arrows or keyboard ← / →, and press Escape to close. Project detail pages link to adjacent entries when available. Projects, dates, credits, outcomes, awards, and client names are not fabricated; leave a date out until you can confirm it.
+The filter definitions live beside the project data in `src/data/work.ts`. Empty states are deliberate until original work is supplied. Do not put temporary reference imagery in project data, or invent names, clients, credits, dates, outcomes or metrics. Original files are never renamed or compressed by this site.
 
-## Personal information and CV
+## Edit profile and CV content
 
-- Edit `src/data/site.ts` for the name, tagline, contact email, social links, hero image (`heroImage`), and profile portrait (`profilePortrait`).
-- Edit `src/data/experience.ts` for education, skills, and verified work or leadership entries.
-- Add a reviewed combined CV PDF as `public/documents/edwin-aby-combined-cv.pdf`. The source CV award names and exact dates need a direct review first, so the site currently does not provide a fabricated or merged PDF.
-- The About page presents the creative/technical profile; `/experience` is the detailed timeline, `/cv` is the combined web CV, and `/films` is the motion-work collection.
+- `src/data/site.ts` contains shared brand/contact data and image paths.
+- `src/data/experience.ts` contains editable roles, group, year, skills, education, skills and language proficiency. Add dates, durations, locations and descriptions only when verified.
+- `docs/content-inventory.md` records what was supplied, conflicting title variants, and actual local media found.
+- Add an approved combined CV PDF at `public/documents/edwin-aby-combined-cv.pdf`. Its download control appears only when that real PDF exists; the web résumé supports browser printing with A4 page rules.
 
-Do not add home address or private phone details to the public profile.
+Do not add a home address or birth details. The current email and WhatsApp contact were explicitly supplied by Edwin.
 
-## Visual system
+## Design, accessibility and hosting
 
-See [docs/design-system.md](docs/design-system.md) for the Night Orchid palette, typography, and motion decisions. The media placeholders are authored CSS and are clearly labelled; they are not portfolio imagery.
+See [docs/design-system.md](docs/design-system.md) for the Contact Sheet / Darkroom Red tokens, typography and motion. The site uses local/system fonts, Next Image and the existing Motion for React setup. Navigation is keyboard operable, galleries have keyboard controls, and reduced-motion preferences are respected. There is no paid CMS, analytics, media host, external font API or paid plugin.
 
-Page changes use a short Motion transition, the opening title enters line by line, images reveal through a crop, and a thin top rule tracks scroll progress. All use transform/opacity where possible and respect `prefers-reduced-motion`. No custom cursor or scroll hijacking is used; the mobile gallery keeps visible, touch-sized controls.
-
-## Free deployment
-
-The site can be deployed to a free Vercel Hobby project. Cloudflare Pages requires a compatible Next.js adapter. Provider limits can change, so check current terms before deploying. No analytics, CMS, database, font API, paid hosting add-on, or external media host is required.
+The app can run on a free Vercel Hobby deployment. Cloudflare Pages requires a compatible Next.js adapter. Provider limits can change; check current terms before deploying. No deployment has been made as part of this work.

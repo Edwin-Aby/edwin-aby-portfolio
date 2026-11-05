@@ -2,8 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { ExperienceList } from "@/components/experience-list";
-import { education, skills } from "@/data/experience";
+import { ExperienceGroups } from "@/components/experience-groups";
+import { education } from "@/data/experience";
 
 export const metadata: Metadata = { title: "Experience" };
-export default function ExperiencePage() { return <section className="subpage experience-page"><div className="page-wrap"><Reveal><span className="eyebrow">CREATIVE WORK · CAMPUS · COMMUNITY</span><h1 className="page-title">In good<br/><em>company.</em></h1><p className="page-deck">A few places where making, learning, and collaboration came together.</p></Reveal><Reveal className="experience-page-list"><ExperienceList/></Reveal><div className="experience-education"><Reveal><span className="eyebrow">EDUCATION</span><h2>{education.qualification}</h2><p>{education.institution}</p></Reveal></div><div className="experience-page-skills"><Reveal><span className="eyebrow">A CREATIVE PRACTICE, WITH TECHNICAL ROOTS</span><p>{skills.creative.join(" · ")}</p><p>{skills.technical.join(" · ")}</p><Link className="text-link" href="/cv">VIEW THE COMBINED CV <ArrowUpRight size={15}/></Link></Reveal></div></div></section>; }
+
+export default function ExperiencePage() {
+  return (
+    <article className="subpage page-wrap experience-page">
+      <Reveal><span className="eyebrow">ROLES · MEDIA · LEADERSHIP</span><h1 className="page-title">Time spent<br /><em>making.</em></h1><p className="page-deck">A record of creative work, internships, campus involvement and MUN leadership, organised by the kind of work rather than one long list.</p></Reveal>
+      <Reveal className="timeline-key"><span>2026</span><i /><span>2025</span><i /><span>UNDATED</span><p>Only supplied years are shown. Months, duration and extra duties are left open where not provided.</p></Reveal>
+      <ExperienceGroups />
+      <section className="experience-education-note">
+        <div><span className="eyebrow">IN PARALLEL</span><h2>Learning the systems<br />behind <em>the image.</em></h2></div>
+        <div><strong>{education.qualification}</strong><span>{education.institution}</span><span>{education.status} · study dates to be confirmed</span><Link className="text-link" href="/cv">OPEN THE COMBINED CV <ArrowUpRight size={15} /></Link></div>
+      </section>
+    </article>
+  );
+}
